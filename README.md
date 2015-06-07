@@ -1,4 +1,4 @@
-# わが星シーケンサー
+# Our Planet Sequencer
 
 ## Tasks
 
