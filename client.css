@@ -1,0 +1,53 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.css";
+
+body {
+  background-image: url(/background-image.jpg);
+  background-size: 100% 100%;
+  font-family: "ヒラギノ明朝 ProN W6", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", serif;
+  font-weight: bold;
+  color: white;
+}
+.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
+}
+/*
+h1 .title-wrapper {
+  padding: 5vh;
+  background-image: linear-gradient(
+    -45deg,
+    white 25%,
+    transparent 25%, transparent 50%,
+    white 50%, white 75%,
+    transparent 75%, transparent
+  );
+  background-size: 8px 8px;
+}
+*/
+h1 .title {
+  font-size: 10vh;
+  font-weight: normal;
+}
+.circle-row {
+}
+
+.circle-col {
+  padding-top: 10vh;
+
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+
+  display: -webkit-flex;
+  -webkit-justify-content: center; 
+  -webkit-align-items: center; 
+}
+.circle {
+  width: 20vh;
+  height: 20vh;
+  border: 1px solid white;
+  border-radius: 150px;
+  -webkit-border-radius: 10vh;
+  -moz-border-radius: 10vh;
+  border-style: dashed;
+}
