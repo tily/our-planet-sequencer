@@ -10,45 +10,13 @@ Input = require('react-bootstrap').Input
 Glyphicon = require('react-bootstrap').Glyphicon
 window.html2canvas = html2canvas = require('html2canvas')
 classnames = require('classnames')
-worker = require('./client/worker')
+
+Sequencer = require('./client/sequencer')
 
 window.onerror = (e, u, l)-> alert 'Error: ' + e + ' Script: ' + u + ' Line: ' + l
 
-@audioContext = new AudioContext()
-currentTime = @audioContext.currentTime
-osc = @audioContext.createOscillator()
-osc.connect @audioContext.destination
-osc.frequency.value = 400
-osc.start currentTime
-osc.stop currentTime + 0.1
-
-osc = @audioContext.createOscillator()
-osc.connect @audioContext.destination
-osc.frequency.value = 400
-osc.start currentTime + 1.0
-osc.stop currentTime + 1.0 + 0.1
-
-osc = @audioContext.createOscillator()
-osc.connect @audioContext.destination
-osc.frequency.value = 400
-osc.start currentTime + 2.0
-osc.stop currentTime + 2.0 + 0.1
-
-osc = @audioContext.createOscillator()
-osc.connect @audioContext.destination
-osc.frequency.value = 800
-osc.start currentTime + 3.0
-osc.stop currentTime + 3.0 + 1.0
-
-{timbre: '', start: '', duration: ''}
-
-worker.onmessage = (e)->
-  if e.data == 'tick'
-  else
-    console.log 'message=' + e.data
-
-worker.postMessage interval: 25.0
-worker.postMessage 'start'
+sequencer = new Sequencer()
+sequencer.start()
 
 App = React.createClass
   mixins: [React.addons.LinkedStateMixin]
@@ -58,7 +26,11 @@ App = React.createClass
 
   handleClickToggle: ()->
     console.log 'hello'
-    @setState playing: !@state.playing
+    if @state.playing
+      sequencer.stop()
+    else
+      sequencer.start()
+    @setState playing: !@state.playing, ()->
 
   render: ->
     <div>
